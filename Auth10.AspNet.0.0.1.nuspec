@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <version>0.0.1</version>
+    <authors>Matias Woloski</authors>
+    <owners>Matias Woloski</owners>
+    <projectUrl>http://auth10.com</projectUrl>
+    <iconUrl>http://blog.auth10.com/assets/themes/the-program/skin/a10favicon.ico</iconUrl>
+    <id>Auth10.AspNet</id>
+    <title>Configure an ASP.NET WebSite with Windows Identity Foundation</title>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>A package that configures federated identity in an ASP.NET website using Windows Identity Foundation in the least amount of steps</description>
+    <summary>A package that configures federated identity in an ASP.NET website using Windows Identity Foundation in the least amount of steps</summary>
+    <copyright>Auth10 LLC</copyright>
+    <tags>wif,asp.net,mvc,claims,auth10</tags>
+  </metadata>
+  <files>
+    <file src="content\AllowTokenPostRequestValidator.cs.pp" target="content\AllowTokenPostRequestValidator.cs.pp" />
+    <file src="content\web.config.transform" target="content\web.config.transform" />
+    <file src="lib\net35\Microsoft.IdentityModel.dll" target="lib\net35\Microsoft.IdentityModel.dll" />
+    <file src="tools\Auth10.psm1" target="tools\Auth10.psm1" />
+    <file src="tools\init.ps1" target="tools\init.ps1" />
+    <file src="tools\install.ps1" target="tools\install.ps1" />
+    <file src="tools\uninstall.ps1" target="tools\uninstall.ps1" />
+  </files>
+</package>

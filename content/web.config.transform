@@ -1,0 +1,44 @@
+<configuration>
+  <configSections>
+    <section name="microsoft.identityModel" type="Microsoft.IdentityModel.Configuration.MicrosoftIdentityModelSection, Microsoft.IdentityModel, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+  </configSections>
+  <system.web>
+    <httpRuntime requestValidationMode="2.0"
+                 requestValidationType="$rootnamespace$.AllowTokenPostRequestValidator" />
+  	<authorization>
+      <deny users="?" />
+    </authorization>
+    <authentication mode="None" />
+    <httpModules>
+      <add name="WSFederationAuthenticationModule" type="Microsoft.IdentityModel.Web.WSFederationAuthenticationModule, Microsoft.IdentityModel, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+      <add name="SessionAuthenticationModule" type="Microsoft.IdentityModel.Web.SessionAuthenticationModule, Microsoft.IdentityModel, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+    </httpModules>
+  </system.web>
+  <system.webServer>
+    <validation validateIntegratedModeConfiguration="false" />
+    <modules>
+      <add name="WSFederationAuthenticationModule" type="Microsoft.IdentityModel.Web.WSFederationAuthenticationModule, Microsoft.IdentityModel, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" preCondition="managedHandler" />
+      <add name="SessionAuthenticationModule" type="Microsoft.IdentityModel.Web.SessionAuthenticationModule, Microsoft.IdentityModel, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" preCondition="managedHandler" />
+    </modules>
+  </system.webServer>
+  <microsoft.identityModel>
+    <service>
+      <audienceUris>
+        <add value="to-be-replaced" />
+      </audienceUris>
+      <federatedAuthentication>
+      	<!-- change requireHttps and requireSsl to true before deploying this publicly, otherwise you are open to man in the middle attacks -->
+        <wsFederation passiveRedirectEnabled="true" issuer="to-be-replaced" realm="to-be-replaced" requireHttps="false" />
+        <cookieHandler requireSsl="false" />
+      </federatedAuthentication>
+      <issuerNameRegistry type="Microsoft.IdentityModel.Tokens.ConfigurationBasedIssuerNameRegistry, Microsoft.IdentityModel, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+        <trustedIssuers>
+          <add thumbprint="to-be-replaced" name="to-be-replaced" />
+        </trustedIssuers>
+      </issuerNameRegistry>
+      <!-- Turning this to none is useful when using self-signed token signing certificates. 
+      	   It is an extra security measure to check the chain trust of token signing certificates which is more important in production -->
+      <certificateValidation certificateValidationMode="None" />
+    </service>
+  </microsoft.identityModel>
+</configuration>
